@@ -1,0 +1,16 @@
+# GitLab CI/CD Pipeline Configuration
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: '/.pip-cache'
+
+test:
+  stage: test
+  script:
+    - python -m venv venv
+    - source venv/Scripts/activate
+    - pip install -r requirements.txt
+    - pytest --cov=src --cov-report=term-missing -v
